@@ -7,7 +7,7 @@ import ErrorMessageComponent from "../components/ErrorMessageComponent";
 import { IDealsResponse } from "../models/deal-interface";
 import GameDealsListComponent from "../components/GameDealsListComponent";
 import SearchBarComponent from "../components/SearchBarComponent";
-import debouncer from "../../utilities/debounce.utility";
+import debouncer from "../components/utilities/debounce.utility";
 
 export default function GameDealsScreen() {
   const [deals, updateDeals] = React.useState<IDealsResponse[]>([]);
