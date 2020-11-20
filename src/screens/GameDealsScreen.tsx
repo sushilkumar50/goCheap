@@ -7,7 +7,7 @@ import ErrorMessageComponent from "../components/ErrorMessageComponent";
 import { IDealsResponse } from "../models/deal-interface";
 import GameDealsListComponent from "../components/GameDealsListComponent";
 import SearchBarComponent from "../components/SearchBarComponent";
-import debouncer from "../components/utilities/debounce.utility";
+import debouncer from "../utilities/debounce.utility";
 
 /*
  this screen is responsible for fetching available deals on games.
