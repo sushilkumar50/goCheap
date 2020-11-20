@@ -5,7 +5,7 @@ import { Feather } from "@expo/vector-icons";
 import { styles } from "./SearchBarComponent.styles";
 
 interface Props {
-  inputChangeHandler: (value: string) => any;
+  inputChangeHandler: (value: string) => void;
 }
 
 /**
