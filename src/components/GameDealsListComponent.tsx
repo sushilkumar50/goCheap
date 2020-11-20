@@ -19,6 +19,11 @@ interface Props {
 function GameDealsListComponent({ deals, navigation }: Props) {
   const { container } = styles;
 
+  /**
+   *
+   * returns jsx for list header
+   *
+   */
   const listHeaderComponen = () => {
     return (
       <DealListItem
@@ -30,6 +35,12 @@ function GameDealsListComponent({ deals, navigation }: Props) {
     );
   };
 
+  /**
+   *
+   * @param {IDealsResponse} item - deals item
+   *
+   * @returns {JSX} returns sigle list item to render
+   */
   const listItemRenderer = ({ item }: { item: IDealsResponse }) => {
     return (
       <TouchableOpacity

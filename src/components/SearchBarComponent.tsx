@@ -8,6 +8,12 @@ interface Props {
   inputChangeHandler: (value: string) => any;
 }
 
+/**
+ *
+ * this component only takes user input and calls input handler
+ *
+ * @param {Function} inputChangeHandler - callback to be called when user types
+ */
 export default function SearchBarComponent({ inputChangeHandler }: Props) {
   const SEARCH_PLACEHOLDER = "Search by game or storeId";
   return (

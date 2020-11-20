@@ -7,14 +7,29 @@ import { NavigationStackScreenProps } from "react-navigation-stack";
 import ErrorMessageComponent from "../components/ErrorMessageComponent";
 import { View } from "react-native";
 
-interface Props {}
-
+/**
+ * this screen fetches and display single deal data
+ * @param {NavigationStackScreenProps} navigation :- is provided by react navigation used to get deal id
+ * to fetch perticular deal data
+ */
 export default function DetailedDealScreen({
   navigation,
 }: NavigationStackScreenProps) {
+  /**
+   * @type {IDealDetails} to store deal data
+   */
   const [deal, updateDeal] = React.useState<IDealDetails>();
+
+  /**
+   * @type {string} - stores error message
+   */
   const [errorMessage, updateErrorMessage] = React.useState<string>("");
+
   const dealId = navigation.getParam("id");
+
+  /**
+   * fetches deal data and updates in state
+   */
   const getDeal = async () => {
     try {
       const deal = await getDealDetails(urlMap.deals, dealId);
@@ -25,11 +40,19 @@ export default function DetailedDealScreen({
     }
   };
 
+  /**
+   * fetches deal data on screen load only once
+   */
   React.useEffect(() => {
     getDeal();
   }, []);
   return (
-    <View>
+    <View
+      style={{
+        backgroundColor: "#839b97",
+        flex: 1,
+      }}
+    >
       {errorMessage ? <ErrorMessageComponent message={errorMessage} /> : null}
       {!errorMessage ? <DetailedCardComponent data={deal} /> : null}
     </View>

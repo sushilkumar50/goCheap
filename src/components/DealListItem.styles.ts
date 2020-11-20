@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 10,
+    paddingVertical: 10,
   },
   headerStyle: {
     backgroundColor: "#f4f4f2",

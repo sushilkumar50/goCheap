@@ -2,8 +2,9 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    margin: 10,
     backgroundColor: "#fff",
+    marginTop: 30,
+    marginHorizontal: 20,
     elevation: 2,
     borderTopWidth: 0,
     shadowColor: "#000",
@@ -18,21 +19,33 @@ export const styles = StyleSheet.create({
     width: 300,
     height: 200,
     borderRadius: 4,
+    marginTop: 10,
   },
   headerStyle: {
     fontSize: 18,
+    color: "#394867",
     fontWeight: "bold",
-    marginBottom: 20,
-    borderBottomWidth: 1,
+    marginBottom: 10,
     borderColor: "#ddd",
     alignSelf: "center",
+    marginHorizontal: 10,
   },
   contentStyle: {
     justifyContent: "center",
+    borderColor: "#ddd",
+    borderTopWidth: 1,
     padding: 20,
     alignItems: "center",
   },
-  priceInfoStyles: {
+  priceInfoHeader: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#394867",
+  },
+  priceInfo: {
+    color: "#394867",
+  },
+  priceInfoContainer: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -42,8 +55,8 @@ export const styles = StyleSheet.create({
     fontWeight: "600",
   },
   descriptionStyle: {
-    color: "#bbbfca",
-    fontSize: 18,
+    color: "#394867",
+    fontSize: 16,
     lineHeight: 20,
     marginTop: 20,
   },

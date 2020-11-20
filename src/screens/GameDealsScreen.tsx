@@ -9,13 +9,26 @@ import GameDealsListComponent from "../components/GameDealsListComponent";
 import SearchBarComponent from "../components/SearchBarComponent";
 import debouncer from "../components/utilities/debounce.utility";
 
+/*
+ this screen is responsible for fetching available deals on games.
+ It renderes a list of all available deals and a search bar to search through deals 
+*/
+
 export default function GameDealsScreen() {
+  // to store all deals and update all deals
   const [deals, updateDeals] = React.useState<IDealsResponse[]>([]);
+
+  // stores filtered list od deals to display on screen
   const [filteredDeals, updateFilteredDeals] = React.useState<IDealsResponse[]>(
     []
   );
+
+  //  stores error message in case of api failure
   const [errorMessage, updateErrorMessage] = React.useState<string>("");
 
+  /*
+   this methos is responsible for fetching list of deals and updating those in state
+  */
   const getAllDeals = async () => {
     try {
       const gameDeals = await getDeals(urlMap.deals);
@@ -25,26 +38,47 @@ export default function GameDealsScreen() {
     }
   };
 
-  const serachDeals = (searchText: string) => {
+  /**
+   * responsible for filtering through game deals list where searchtext matches storeId 
+   * or is substring of game title
+   @param {string} searchText - text to search in game deals list 
+   @returns {void}
+  */
+  const serachDeals = (searchText: string): void => {
     if (!searchText) {
       updateFilteredDeals(deals);
     } else {
       const filteredList = deals.filter(
         (deal) =>
-          deal.storeID.includes(searchText) ||
-          deal.internalName.includes(searchText) ||
-          deal.title.includes(searchText)
+          deal.storeID
+            .toLocaleLowerCase()
+            .includes(searchText.toLocaleLowerCase()) ||
+          deal.internalName
+            .toLocaleLowerCase()
+            .includes(searchText.toLocaleLowerCase()) ||
+          deal.title
+            .toLocaleLowerCase()
+            .includes(searchText.toLocaleLowerCase())
       );
       updateFilteredDeals(filteredList);
     }
   };
 
+  /**
+   * debounced search handler to delay search event by given delay
+   */
   const debouncedSearchHandler = debouncer(serachDeals, 300);
 
+  /**
+   * fetches list of all deals on screen load
+   */
   React.useEffect(() => {
     getAllDeals();
   }, []);
 
+  /**
+   * updates filtered list with full list when fetch new list from api
+   */
   React.useEffect(() => {
     if (deals.length > 0) {
       debouncedSearchHandler("");
@@ -52,7 +86,7 @@ export default function GameDealsScreen() {
   }, [deals]);
 
   return (
-    <View>
+    <View style={{ backgroundColor: "#839b97", flex: 1 }}>
       {errorMessage ? <ErrorMessageComponent message={errorMessage} /> : null}
       {!errorMessage ? (
         <>
